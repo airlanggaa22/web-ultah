@@ -1,0 +1,46 @@
+/* DESIGN TOKENS — Midnight Romance Theme */
+:root {
+  /* Color Palette */
+  --bg-midnight: #14061F;
+  --bg-gradient-start: #1D062B;
+  --bg-gradient-mid: #2A0B33;
+  --bg-gradient-end: #4A1245;
+  
+  --accent-rose: #FF5C8A;
+  --accent-blush: #FFB3C7;
+  --accent-magenta: #E03166;
+  --highlight-gold: #F6D7A7;
+  --highlight-amber: #FFD166;
+  
+  --text-primary: #FFF4F0;
+  --text-secondary: #CDB4DB;
+  --text-muted: rgba(255, 244, 240, 0.65);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-bg-hover: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+  --glass-blur: 16px;
+
+  /* Photobox Themes */
+  --photobox-cream: #FFFDF9;
+  --photobox-pink: #FFE5EC;
+  --photobox-noir: #181419;
+  --photobox-plum: #2D1137;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-cursive: 'Dancing Script', 'Caveat', cursive;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Motion & Easing */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  
+  /* Touch target */
+  --min-tap: 44px;
+}
