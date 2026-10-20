@@ -45,6 +45,12 @@ async function serve(request, response) {
     return;
   }
 
+  if (pathname === '/health') {
+    response.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    response.end('OK');
+    return;
+  }
+
   if (pathname === '/') pathname = '/index.html';
   if (pathname === '/admin' || pathname === '/admin/') pathname = '/admin.html';
 
