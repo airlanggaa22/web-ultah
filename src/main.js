@@ -20,8 +20,12 @@ import { renderCake } from './chapters/cake.js';
 import { renderFireworks } from './chapters/fireworks.js';
 import { renderMinigame } from './chapters/minigame.js';
 import { renderOutro } from './chapters/outro.js';
+import { fetchServerConfig } from './config.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch config terbaru dari server sebelum render
+  await fetchServerConfig();
+
   const appContainer = document.getElementById('app');
   const navBtnMusic = document.getElementById('nav-btn-music');
   const navBtnMenu = document.getElementById('nav-btn-menu');

@@ -4,10 +4,13 @@
  * dengan live upload dari HP/laptop, preview instan, dan penyimpanan ke localStorage.
  */
 
-import { CONFIG, DEFAULT_CONFIG, saveCustomConfig, resetCustomConfig } from './config.js';
+import { CONFIG, DEFAULT_CONFIG, saveCustomConfig, resetCustomConfig, fetchServerConfig } from './config.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Ambil state terkini (bisa dari localStorage atau default)
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch config terbaru dari server
+  await fetchServerConfig();
+
+  // Ambil state terkini
   let currentConfig = JSON.parse(JSON.stringify(CONFIG));
 
   const photoboxContainer = document.getElementById('admin-photobox-grid');
@@ -190,15 +193,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Tombol Simpan Semua Perubahan
-  document.getElementById('btn-save-all').addEventListener('click', () => {
-    saveCustomConfig(currentConfig);
+  document.getElementById('btn-save-all').addEventListener('click', async () => {
+    await saveCustomConfig(currentConfig);
     showToast('🎉 Semua foto berhasil disimpan! Website utama otomatis diperbarui.');
   });
 
   // Tombol Reset ke Default
-  document.getElementById('btn-reset-default').addEventListener('click', () => {
+  document.getElementById('btn-reset-default').addEventListener('click', async () => {
     if (confirm('Yakin ingin mereset semua foto kembali ke setelan awal bawaan?')) {
-      resetCustomConfig();
+      await resetCustomConfig();
       currentConfig = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
       renderPhotoboxEditors();
       renderTimelineEditors();

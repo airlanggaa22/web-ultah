@@ -170,51 +170,88 @@ Airlangga`
 };
 
 /**
- * Helper untuk menggabungkan default config dengan data localStorage (jika ada editan dari /admin)
+ * Helper untuk menggabungkan default config dengan data dari server atau localStorage
  */
 function getActiveConfig() {
   try {
+    // Coba dari localStorage dulu (fallback cepat)
     const saved = localStorage.getItem('NAILA_BDAY_CONFIG');
     if (!saved) return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
     const parsed = JSON.parse(saved);
-    return {
-      ...DEFAULT_CONFIG,
-      ...parsed,
-      recipient: { ...DEFAULT_CONFIG.recipient, ...(parsed.recipient || {}) },
-      sender: { ...DEFAULT_CONFIG.sender, ...(parsed.sender || {}) },
-      music: { ...DEFAULT_CONFIG.music, ...(parsed.music || {}) },
-      miniGame: { ...DEFAULT_CONFIG.miniGame, ...(parsed.miniGame || {}) },
-      photobox: {
-        ...DEFAULT_CONFIG.photobox,
-        ...(parsed.photobox || {}),
-        photos: parsed.photobox?.photos || DEFAULT_CONFIG.photobox.photos
-      },
-      timeline: parsed.timeline || DEFAULT_CONFIG.timeline,
-      polaroids: parsed.polaroids || DEFAULT_CONFIG.polaroids,
-      letter: { ...DEFAULT_CONFIG.letter, ...(parsed.letter || {}) },
-      reasons: parsed.reasons || DEFAULT_CONFIG.reasons,
-      cake: { ...DEFAULT_CONFIG.cake, ...(parsed.cake || {}) },
-      fireworks: { ...DEFAULT_CONFIG.fireworks, ...(parsed.fireworks || {}) },
-      outro: { ...DEFAULT_CONFIG.outro, ...(parsed.outro || {}) }
-    };
+    return mergeConfig(parsed);
   } catch (err) {
     console.warn('Gagal membaca saved config:', err);
     return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
   }
 }
 
-export const CONFIG = getActiveConfig();
+function mergeConfig(parsed) {
+  return {
+    ...DEFAULT_CONFIG,
+    ...parsed,
+    recipient: { ...DEFAULT_CONFIG.recipient, ...(parsed.recipient || {}) },
+    sender: { ...DEFAULT_CONFIG.sender, ...(parsed.sender || {}) },
+    music: { ...DEFAULT_CONFIG.music, ...(parsed.music || {}) },
+    miniGame: { ...DEFAULT_CONFIG.miniGame, ...(parsed.miniGame || {}) },
+    photobox: {
+      ...DEFAULT_CONFIG.photobox,
+      ...(parsed.photobox || {}),
+      photos: parsed.photobox?.photos || DEFAULT_CONFIG.photobox.photos
+    },
+    timeline: parsed.timeline || DEFAULT_CONFIG.timeline,
+    polaroids: parsed.polaroids || DEFAULT_CONFIG.polaroids,
+    letter: { ...DEFAULT_CONFIG.letter, ...(parsed.letter || {}) },
+    reasons: parsed.reasons || DEFAULT_CONFIG.reasons,
+    cake: { ...DEFAULT_CONFIG.cake, ...(parsed.cake || {}) },
+    fireworks: { ...DEFAULT_CONFIG.fireworks, ...(parsed.fireworks || {}) },
+    outro: { ...DEFAULT_CONFIG.outro, ...(parsed.outro || {}) }
+  };
+}
+
+export let CONFIG = getActiveConfig();
 
 /**
- * Menyimpan konfigurasi baru ke localStorage
+ * Fetch config dari server dan update CONFIG + localStorage
  */
-export function saveCustomConfig(newConfig) {
+export async function fetchServerConfig() {
+  try {
+    const res = await fetch('/api/config');
+    const data = await res.json();
+    if (data) {
+      localStorage.setItem('NAILA_BDAY_CONFIG', JSON.stringify(data));
+      CONFIG = mergeConfig(data);
+      return CONFIG;
+    }
+  } catch (err) {
+    console.warn('Gagal fetch config dari server:', err);
+  }
+  return CONFIG;
+}
+
+/**
+ * Menyimpan konfigurasi baru ke server + localStorage
+ */
+export async function saveCustomConfig(newConfig) {
   localStorage.setItem('NAILA_BDAY_CONFIG', JSON.stringify(newConfig));
+  try {
+    await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newConfig)
+    });
+  } catch (err) {
+    console.warn('Gagal simpan ke server, tersimpan di localStorage saja:', err);
+  }
 }
 
 /**
  * Menghapus konfigurasi kustom dan mengembalikan ke setelan awal
  */
-export function resetCustomConfig() {
+export async function resetCustomConfig() {
   localStorage.removeItem('NAILA_BDAY_CONFIG');
+  try {
+    await fetch('/api/config', { method: 'DELETE' });
+  } catch (err) {
+    console.warn('Gagal reset di server:', err);
+  }
 }
