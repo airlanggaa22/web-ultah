@@ -67,7 +67,16 @@ Kamu juga bisa mengubah langsung di file konfigurasi:
 
 ---
 
-## 🌐 Cara Deploy Online Gratis (Agar Bisa Dikirimkan Link-nya ke Naila)
+## 🚂 Deploy ke Railway
+
+1. Push project ini ke GitHub, lalu buat project baru di [Railway](https://railway.com/).
+2. Pilih **Deploy from GitHub repo** dan hubungkan repository ini.
+3. Railway akan memasang dependency, menjalankan `npm run build`, lalu menjalankan `npm start`.
+4. Setelah deployment berhasil, buka **Settings → Networking → Generate Domain** untuk mendapatkan URL publik.
+
+Server production menyajikan folder `dist` dan otomatis memakai port `PORT` dari Railway. Halaman utama tersedia di `/` dan panel admin di `/admin`.
+
+## 🌐 Alternatif Deploy Online Gratis
 
 1. **Vercel (Paling Mudah):**
    - Jalankan `npm run build`
