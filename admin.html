@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Ganti Foto Web Ultah Naila</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/styles/admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Header with Action Buttons -->
+    <header class="admin-header">
+      <div class="admin-title-wrap">
+        <h1>⚙️ Panel Edit Foto Web Ultah</h1>
+        <p>Ganti foto Naila dengan mudah (langsung pilih dari HP / Laptop) 💖</p>
+      </div>
+
+      <div class="admin-actions">
+        <a href="/" class="upload-btn-label" style="text-decoration: none; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);">
+          👁️ Lihat Web Ultah
+        </a>
+        <button id="btn-save-all" class="upload-btn-label" style="border: none; cursor: pointer; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.95rem; padding: 10px 20px;">
+          💾 Simpan Semua Foto
+        </button>
+      </div>
+    </header>
+
+    <!-- SECTION 1: PHOTOBOX STRIP (4 FOTO) -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">
+        <span>📸</span> 1. Foto Photobox Strip (4 Frame Korean Life4Cuts)
+      </h2>
+      <p class="admin-section-desc">
+        Ini adalah 4 foto utama yang tampil tersusun rapi di Photobox Strip Sweet 17 Naila. Anda bisa langsung mengklik "Pilih Foto" dari galeri file Anda.
+      </p>
+
+      <div class="photo-grid" id="admin-photobox-grid">
+        <!-- populated dynamically by admin.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: TIMELINE KENANGAN (3 FOTO) -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">
+        <span>⏳</span> 2. Foto Timeline Kenangan (3 Momen Perjalanan)
+      </h2>
+      <p class="admin-section-desc">
+        Foto-foto yang tampil di alur perjalanan hidup: Kelahiran 2009, Masa Tumbuh Kembang, dan Sweet Seventeen 2026.
+      </p>
+
+      <div class="photo-grid" id="admin-timeline-grid">
+        <!-- populated dynamically by admin.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: POLAROID MEMORIES (3 FOTO) -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">
+        <span>📷</span> 3. Foto Polaroid Memories (3 Frame Miring)
+      </h2>
+      <p class="admin-section-desc">
+        Foto polaroid bergaya santai yang berada tepat di bawah studio photobox.
+      </p>
+
+      <div class="photo-grid" id="admin-polaroids-grid">
+        <!-- populated dynamically by admin.js -->
+      </div>
+    </section>
+
+    <!-- ACTION FOOTER: RESET & COPY CONFIG -->
+    <footer style="margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <button id="btn-copy-code" class="upload-btn-label" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+        📋 Salin Kode Konfigurasi config.js
+      </button>
+      <button id="btn-reset-default" class="upload-btn-label" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5;">
+        🔄 Reset ke Foto Bawaan
+      </button>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toast-notice">
+    <span>✨</span>
+    <span id="toast-msg">Semua perubahan berhasil disimpan!</span>
+  </div>
+
+  <script type="module" src="/src/admin.js"></script>
+</body>
+</html>

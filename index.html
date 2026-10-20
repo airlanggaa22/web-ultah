@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Happy 17th Birthday, Naila Cantika Aula Nikmah 🤍</title>
+
+  <!-- Open Graph for WhatsApp & Social Preview -->
+  <meta property="og:title" content="Happy 17th Birthday, Naila Cantika 🤍">
+  <meta property="og:description" content="Sebuah website kejutan manis Sweet Seventeen khusus untuk Naila Cantika Aula Nikmah.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=1200&auto=format&fit=crop&q=80">
+  <meta name="theme-color" content="#14061F">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+
+  <!-- Google Fonts: Playfair Display, Dancing Script, Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient Background: Stars & Gentle Floating Hearts -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Fireworks Overlay Canvas -->
+  <canvas id="fireworks-canvas"></canvas>
+
+  <!-- Top Floating Controls: Music Toggle & Chapter Menu -->
+  <header class="top-nav">
+    <button class="nav-btn" id="nav-btn-music" aria-label="Toggle Musik" title="Putar / Heningkan Musik">
+      🎵
+    </button>
+    <button class="nav-btn" id="nav-btn-menu" aria-label="Menu Chapter" title="Buka Menu Chapter">
+      📑
+    </button>
+  </header>
+
+  <!-- CHAPTER NAVIGATION DRAWER / MODAL -->
+  <div class="menu-drawer-overlay" id="menu-drawer-overlay">
+    <div class="glass-card menu-drawer-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <span class="section-badge" style="margin: 0;">Menu Navigasi ✨</span>
+        <button id="menu-drawer-close" class="nav-btn" style="width: 36px; height: 36px; font-size: 1rem;">✕</button>
+      </div>
+      <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 14px; color: var(--highlight-gold);">
+        Menu Spesial Sweet 17 Naila
+      </h3>
+      <nav class="chapter-nav-list" id="chapter-nav-list">
+        <button class="chapter-nav-item" data-target="chapter-gate">🎁 1. Buka Hadiah Utama</button>
+        <button class="chapter-nav-item" data-target="chapter-greeting">👑 2. Ucapan Sweet 17</button>
+        <button class="chapter-nav-item highlight-nav-item" data-target="chapter-photobox">📸 3. Studio Photobox Strip (Spesial)</button>
+        <button class="chapter-nav-item" data-target="chapter-timeline">⏳ 4. Timeline Perjalanan Naila</button>
+        <button class="chapter-nav-item" data-target="chapter-letter">💌 5. Surat Cinta untuk Naila</button>
+        <button class="chapter-nav-item" data-target="chapter-reasons">💖 6. 10 Alasan Kamu Begitu Spesial</button>
+        <button class="chapter-nav-item" data-target="chapter-cake">🎂 7. Kue & Tiup Lilin 17</button>
+        <button class="chapter-nav-item" data-target="chapter-fireworks">🎆 8. Kembang Api Hati & Nama</button>
+        <button class="chapter-nav-item" data-target="chapter-minigame">🎮 9. Mini Game Tangkap Hati</button>
+        <button class="chapter-nav-item" data-target="chapter-outro">🤍 10. Pesan Penutup & Rahasia</button>
+        <a href="/admin" class="chapter-nav-item" style="margin-top: 8px; text-decoration: none; border-color: rgba(246, 215, 167, 0.4); color: var(--highlight-gold); background: rgba(246, 215, 167, 0.1);">
+          ⚙️ Buka Panel Admin (Ganti Semua Foto)
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main App Content Container -->
+  <main id="app">
+    <!-- Chapters are dynamically rendered and animated here -->
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
